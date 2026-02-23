@@ -3,6 +3,7 @@
 recordings/
 train/
 val/
+yolo11env/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
