@@ -1,0 +1,14 @@
+path: C:/Users/asus/Desktop/MASTER_MERGED
+
+train: train/images
+val: val/images
+
+names:
+  0: helmet
+  1: vest
+  2: person
+  3: fire
+  4: smoke
+  5: gloves
+  6: forklift
+  7: goggles
