@@ -1,227 +1,355 @@
-Real-Time Multi-Hazard & PPE Compliance Detection with Computer Vision
+🏭 Industrial Safety Vision System
+Real-Time AI Monitoring • Edge-Ready Architecture • Automation-Oriented Design
+🧠 Concept & Design Philosophy
 
-AI-powered real-time Occupational Health & Safety (OHS) monitoring system built using custom-trained Ultralytics YOLO and ID-based tracking logic.
+This project is not just an object detection demo.
 
-🚀 Project Overview
+It is a system-level industrial safety architecture designed from scratch to simulate how a real-world automation-grade safety monitoring platform should behave.
 
-This project is a real-time industrial safety monitoring system designed to detect:
+Instead of focusing only on detection accuracy, the system emphasizes:
 
-👷 PPE compliance (Helmet, Vest, Gloves, Goggles)
+Temporal reasoning over single-frame decisions
+
+ID-based behavioral analysis
+
+Real-time performance stability
+
+Event-driven architecture
+
+Embedded system integration readiness
+
+Automation pipeline compatibility
+
+It is engineered with scalability, hardware integration, and deployment scenarios in mind.
+
+🎯 Core Purpose
+
+To build a modular, real-time AI system capable of:
+
+Monitoring industrial environments
+
+Enforcing PPE compliance
+
+Detecting fire & smoke hazards
+
+Generating structured safety events
+
+Integrating with embedded alert systems
+
+Preparing for edge deployment (Raspberry Pi / ESP32)
+
+Supporting future automation workflows
+
+This is a system architecture project, not only a detection experiment.
+
+🔍 Detection Capabilities
+
+The system detects:
+
+👷 Person
+
+⛑ Helmet
+
+🦺 Vest
+
+🧤 Gloves
+
+🥽 Goggles
 
 🔥 Fire
 
 🌫 Smoke
 
-🚜 Forklift presence
+🚜 Forklift
 
-🧍 Person tracking (ID-based)
+Model:
 
-The system runs live on camera input and performs:
-
-Object detection
-
-Person ID tracking (IoU-based tracker)
-
-PPE compliance verification
-
-Violation duration tracking (3-second rule)
-
-Intelligent alarm triggering
-
-Video recording
-
-Alert image capture
-
-CSV logging
-
-It is designed as a production-ready AI pipeline, not just a demo model.
-
-🧠 What Makes This Project Advanced?
-1️⃣ Custom YOLO Training
-
-Multi-class custom dataset
-
-Helmet, Vest, Fire, Smoke, Gloves, Forklift, Goggles
-
-Trained with Ultralytics YOLO
+Custom-trained Ultralytics YOLO
 
 mAP ≈ 0.88
 
-Confidence tuning & false positive reduction
+GPU accelerated (PyTorch CUDA)
 
-2️⃣ Real-Time ID Tracking System
+⚙️ Architecture Layers
+1️⃣ Vision Layer
 
-Instead of triggering alerts per frame, the system:
+Real-time YOLO inference
 
-Assigns unique IDs to each detected person
+Optimized confidence / IoU thresholds
 
-Tracks individuals across frames
+Structured detection parsing
 
-Applies time-based violation logic per ID
+FPS smoothing
 
-This prevents:
+2️⃣ Tracking Layer
 
-Instant false alarms
+Custom IoU-based multi-object tracker
 
-Frame-based noise triggering
+Persistent person_id
 
-Flickering detection issues
+Track lifecycle management
 
-3️⃣ PPE Violation Duration Logic (3-Second Rule)
+Miss tolerance control
 
-A violation is only triggered if:
+No external tracking dependency — fully implemented and managed.
 
-NO_HELMET or NO_VEST persists ≥ 3 seconds
+3️⃣ Compliance Intelligence Layer
 
-This introduces:
+Instead of single-frame violation detection:
 
-Temporal reasoning
+Person bounding box region segmentation (head / torso)
 
-Real-world compliance simulation
+Spatial object association
 
-False-positive suppression
+ID-based violation duration tracking
 
-4️⃣ Intelligent Alarm System
+3-second persistence rule
 
-Alarm hierarchy:
+Temporal state management
 
-Condition	Level
-Fire detected	CRITICAL
-Smoke detected	CRITICAL
-PPE violation	WARNING
+False positive reduction logic
 
-Includes:
+This prevents unstable alarms and simulates industrial-grade logic behavior.
 
-Cooldown logic (anti-spam)
+4️⃣ Event & Alarm Engine
 
-Alert image saving
+Warning classification (PPE violations)
 
-CSV logging with object counts
+Critical classification (Fire / Smoke)
 
-Visual alarm banner overlay
+Cooldown mechanism
 
-5️⃣ Modular Architecture
+Structured CSV logging
 
-The system is structured for scalability:
+Alert snapshot storage
 
-MASTER_MERGED/
-│
-├── run_camera.py
-├── core/
-│   ├── __init__.py
-│   └── ppe_timer.py
-├── alerts/
-├── recordings/
+Modular trigger architecture
 
-Core components:
+This transforms detection into structured safety events.
 
-IoU-based tracker
+5️⃣ Automation-Ready Output Layer
 
-ID-based violation state manager
+The system is designed to integrate with:
 
-Detection pipeline
+ESP32 (HTTP alarm trigger)
 
-Logging & recording module
+Buzzer / Relay control modules
 
-Designed for future:
+Raspberry Pi edge deployments
 
-ESP32 hardware integration
+Local automation relays
 
-Web dashboard
+Future cloud event streaming
 
-Mobile notification system
+The logic layer is separated from hardware — enabling portability.
 
-Pre/Post event video buffering
+🏗️ System Engineering Perspective
 
-🛠 Tech Stack
+This project demonstrates:
+
+Real-Time Systems Thinking
+
+Temporal Decision Logic
+
+Multi-Layer Architecture Design
+
+Object Association Strategies
+
+State Management
+
+Event-Driven Programming
+
+Embedded System Preparation
+
+Performance-Aware Loop Design
+
+Industrial Use-Case Simulation
+
+It was redesigned independently from previous experiments to reflect:
+
+Cleaner modular structure
+
+Stronger temporal logic
+
+Hardware-aware design
+
+Automation compatibility
+
+🧪 Practical Engineering Learnings
+📊 Computer Vision
+
+Dataset merging & cleaning
+
+Label normalization
+
+mAP evaluation
+
+Confidence calibration
+
+Bounding-box region modeling
+
+⏱️ Real-Time Optimization
+
+FPS smoothing
+
+Frame delta timing
+
+Cooldown enforcement
+
+Stable event triggering
+
+🔁 Tracking & State Control
+
+IoU matrix-based ID assignment
+
+Track lifecycle pruning
+
+State-based violation accumulation
+
+Memory-safe ID cleanup
+
+🧩 Automation Thinking
+
+Hardware abstraction logic
+
+Event → trigger pipeline
+
+Decoupled alert system design
+
+Future async trigger planning
+
+🌐 Cross-Disciplinary Growth
+
+While developing this system, I am also actively advancing in:
+
+JavaScript
+
+HTML
+
+CSS
+
+Frontend architecture fundamentals
+
+UI/UX layout structuring
+
+The long-term vision includes:
+
+A web-based real-time monitoring dashboard
+
+Live camera stream visualization
+
+Alert analytics interface
+
+Safety statistics panel
+
+Remote control interface
+
+This project is intentionally structured to evolve into a full-stack industrial monitoring platform.
+
+🔌 Deployment Scenarios
+
+Possible application environments:
+
+Manufacturing facilities
+
+Construction sites
+
+Warehouses
+
+Chemical plants
+
+Logistics centers
+
+Smart factory environments
+
+Edge-based on-site monitoring nodes
+
+Potential automation scenarios:
+
+Automatic machine shutdown upon CRITICAL event
+
+Audible alarms via ESP32 relay
+
+On-site warning signal systems
+
+Cloud event push to mobile dashboard
+
+Safety compliance analytics reporting
+
+🖥️ Technical Stack
 
 Python 3.10
 
-Ultralytics YOLO
+Ultralytics YOLO 8.x
 
 PyTorch (CUDA)
 
 OpenCV
 
-Custom IoU tracker
+Custom IoU Tracker
 
-CSV logging
+CSV structured logging
 
-Real-time video pipeline
+Modular core logic
 
-🏗 Engineering Challenges Solved
+Windows development environment
 
-✔ Real-time processing with stable FPS
-✔ False positive reduction via spatial + temporal filtering
-✔ ID-based event logic instead of frame-based logic
-✔ Modular structure for production extension
-✔ Alert cooldown & persistence logic
+Planned Extensions:
 
-📈 What I Learned
+Raspberry Pi deployment
 
-Through this project, I developed hands-on experience in:
+ESP32 alarm integration
 
-Real-time computer vision systems
+Web dashboard (JS/HTML/CSS)
 
-Model training & hyperparameter tuning
+Async event broadcasting
 
-Detection post-processing logic
+🚀 Engineering Direction
 
-Temporal event reasoning
+This project is evolving toward:
 
-State machine design
+Edge AI deployment
 
-Tracker implementation (without external libraries)
+Multi-camera architecture
 
-Performance optimization for live camera systems
+Distributed monitoring nodes
 
-Engineering production-style pipelines
+Web-based safety management panel
 
-Logging, alert handling & structured output
+Mobile notification system
 
-This project moved beyond "just training a model" and into building a complete AI-powered safety system.
+Statistical compliance tracking
 
-🎯 Future Development Roadmap
+💼 Professional Value
 
-Intelligent fire/smoke evidence accumulation
+This project reflects:
 
-Pre-event + post-event video clip saving
+System-level problem solving
 
-ESP32 hardware alarm integration
+Industrial scenario awareness
 
-Web dashboard (Flask / FastAPI)
+AI applied beyond academic context
 
-Mobile push notification system
+Embedded system readiness
 
-ByteTrack / DeepSORT upgrade
+Automation-focused design
 
-📌 Why This Project Matters
+Structured and maintainable code architecture
 
-Industrial safety monitoring is critical in:
+It demonstrates readiness for:
 
-Construction sites
+AI Engineering roles
 
-Manufacturing plants
+Computer Vision internships
 
-Warehouses
+Embedded AI systems
 
-Smart factories
+Industrial automation projects
 
-This system demonstrates how AI can be integrated into real-world safety environments to:
-
-Reduce risk
-
-Automate monitoring
-
-Improve compliance
-
-Enable smart industrial infrastructure
+Full-stack safety monitoring systems
 
 👨‍💻 Author
 
 Burak Kaygusuzoğlu
 Computer Engineering Student
-AI & Real-Time Systems Enthusiast
-
-GitHub: github.com/burakkaygusuzoglu
-LinkedIn: linkedin.com/in/burak-kaygusuzoglu-173559334
+AI • Real-Time Systems • Automation • Web Development
