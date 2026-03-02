@@ -1,355 +1,181 @@
-🏭 Industrial Safety Vision System
-Real-Time AI Monitoring • Edge-Ready Architecture • Automation-Oriented Design
-🧠 Concept & Design Philosophy
+Industrial PPE Safety AI
+Real-Time Vision System • Edge-Ready • Automation-Oriented
+🔎 Project Summary
 
-This project is not just an object detection demo.
+Industrial PPE Safety AI is a real-time computer vision system designed for industrial environments.
 
-It is a system-level industrial safety architecture designed from scratch to simulate how a real-world automation-grade safety monitoring platform should behave.
+It performs:
 
-Instead of focusing only on detection accuracy, the system emphasizes:
+• Multi-class hazard detection
+• ID-based person tracking
+• Duration-based PPE violation analysis
+• Structured alarm generation
+• Snapshot + CSV logging
+• Edge-device integration preparation
 
-Temporal reasoning over single-frame decisions
+This project is engineered as a system architecture — not just a detection demo.
 
-ID-based behavioral analysis
+🎯 Detection Capabilities
 
-Real-time performance stability
+The model detects:
 
-Event-driven architecture
+• Person
+• Helmet
+• Vest
+• Gloves
+• Goggles
+• Fire
+• Smoke
+• Forklift
 
-Embedded system integration readiness
+Model details:
 
-Automation pipeline compatibility
+• Custom-trained Ultralytics YOLO
+• mAP ≈ 0.88
+• GPU accelerated (PyTorch CUDA)
+• Optimized confidence & IoU thresholds
 
-It is engineered with scalability, hardware integration, and deployment scenarios in mind.
+🧠 System Design Philosophy
 
-🎯 Core Purpose
+This system was redesigned independently with a production-oriented mindset.
 
-To build a modular, real-time AI system capable of:
+Instead of frame-based alerts:
 
-Monitoring industrial environments
+• ID-based temporal logic is applied
+• Violations require 3-second persistence
+• Cooldown logic prevents alarm spam
+• State management ensures stability
+• Detection is converted into structured safety events
 
-Enforcing PPE compliance
+The focus is reliability, not visual demo output.
 
-Detecting fire & smoke hazards
-
-Generating structured safety events
-
-Integrating with embedded alert systems
-
-Preparing for edge deployment (Raspberry Pi / ESP32)
-
-Supporting future automation workflows
-
-This is a system architecture project, not only a detection experiment.
-
-🔍 Detection Capabilities
-
-The system detects:
-
-👷 Person
-
-⛑ Helmet
-
-🦺 Vest
-
-🧤 Gloves
-
-🥽 Goggles
-
-🔥 Fire
-
-🌫 Smoke
-
-🚜 Forklift
-
-Model:
-
-Custom-trained Ultralytics YOLO
-
-mAP ≈ 0.88
-
-GPU accelerated (PyTorch CUDA)
-
-⚙️ Architecture Layers
+⚙️ Architecture Overview
 1️⃣ Vision Layer
 
-Real-time YOLO inference
-
-Optimized confidence / IoU thresholds
-
-Structured detection parsing
-
-FPS smoothing
+• Real-time YOLO inference
+• Optimized frame loop
+• FPS smoothing
 
 2️⃣ Tracking Layer
 
-Custom IoU-based multi-object tracker
+• Custom IoU-based multi-object tracker
+• Persistent person_id assignment
+• Track lifecycle management
 
-Persistent person_id
-
-Track lifecycle management
-
-Miss tolerance control
-
-No external tracking dependency — fully implemented and managed.
+No external tracker dependency.
 
 3️⃣ Compliance Intelligence Layer
 
-Instead of single-frame violation detection:
+• Person region segmentation (head / torso)
+• Spatial object association
+• Duration-based violation accumulation
+• Temporal state control
 
-Person bounding box region segmentation (head / torso)
+4️⃣ Alarm Engine
 
-Spatial object association
+• WARNING → PPE violations
+• CRITICAL → Fire / Smoke
+• Alert snapshot capture
+• CSV event logging
+• Cooldown-based trigger control
 
-ID-based violation duration tracking
+5️⃣ Automation-Ready Output
 
-3-second persistence rule
+Designed to integrate with:
 
-Temporal state management
+• ESP32 (HTTP trigger + buzzer + relay)
+• Raspberry Pi edge deployment
+• On-site automation systems
+• Future web dashboard interface
 
-False positive reduction logic
+Hardware abstraction is separated from detection logic.
 
-This prevents unstable alarms and simulates industrial-grade logic behavior.
+🏗️ Engineering Concepts Applied
 
-4️⃣ Event & Alarm Engine
+• Real-Time System Design
+• Multi-Object Tracking
+• IoU-Based Association
+• Temporal Decision Logic
+• State Management
+• Event-Driven Architecture
+• Structured Logging
+• Embedded System Preparation
+• Performance Optimization
 
-Warning classification (PPE violations)
+📚 What I Practiced & Learned
+Computer Vision
 
-Critical classification (Fire / Smoke)
+• Dataset merging & label consistency
+• Confidence calibration
+• False-positive reduction
+• Bounding box region modeling
 
-Cooldown mechanism
+System Architecture
 
-Structured CSV logging
+• Modular folder structure
+• Separation of logic layers
+• Production-style code organization
+• Stable real-time loop handling
 
-Alert snapshot storage
+Automation Thinking
 
-Modular trigger architecture
+• Event → trigger pipeline design
+• Hardware abstraction planning
+• Edge deployment considerations
 
-This transforms detection into structured safety events.
+🌐 Broader Development Direction
 
-5️⃣ Automation-Ready Output Layer
+In parallel with AI & real-time systems, I am actively improving:
 
-The system is designed to integrate with:
+• JavaScript
+• HTML
+• CSS
+• Frontend structure design
 
-ESP32 (HTTP alarm trigger)
+Long-term vision:
 
-Buzzer / Relay control modules
+• Web-based monitoring dashboard
+• Live stream interface
+• Alert analytics panel
+• Remote safety management system
 
-Raspberry Pi edge deployments
-
-Local automation relays
-
-Future cloud event streaming
-
-The logic layer is separated from hardware — enabling portability.
-
-🏗️ System Engineering Perspective
-
-This project demonstrates:
-
-Real-Time Systems Thinking
-
-Temporal Decision Logic
-
-Multi-Layer Architecture Design
-
-Object Association Strategies
-
-State Management
-
-Event-Driven Programming
-
-Embedded System Preparation
-
-Performance-Aware Loop Design
-
-Industrial Use-Case Simulation
-
-It was redesigned independently from previous experiments to reflect:
-
-Cleaner modular structure
-
-Stronger temporal logic
-
-Hardware-aware design
-
-Automation compatibility
-
-🧪 Practical Engineering Learnings
-📊 Computer Vision
-
-Dataset merging & cleaning
-
-Label normalization
-
-mAP evaluation
-
-Confidence calibration
-
-Bounding-box region modeling
-
-⏱️ Real-Time Optimization
-
-FPS smoothing
-
-Frame delta timing
-
-Cooldown enforcement
-
-Stable event triggering
-
-🔁 Tracking & State Control
-
-IoU matrix-based ID assignment
-
-Track lifecycle pruning
-
-State-based violation accumulation
-
-Memory-safe ID cleanup
-
-🧩 Automation Thinking
-
-Hardware abstraction logic
-
-Event → trigger pipeline
-
-Decoupled alert system design
-
-Future async trigger planning
-
-🌐 Cross-Disciplinary Growth
-
-While developing this system, I am also actively advancing in:
-
-JavaScript
-
-HTML
-
-CSS
-
-Frontend architecture fundamentals
-
-UI/UX layout structuring
-
-The long-term vision includes:
-
-A web-based real-time monitoring dashboard
-
-Live camera stream visualization
-
-Alert analytics interface
-
-Safety statistics panel
-
-Remote control interface
-
-This project is intentionally structured to evolve into a full-stack industrial monitoring platform.
-
-🔌 Deployment Scenarios
-
-Possible application environments:
-
-Manufacturing facilities
-
-Construction sites
-
-Warehouses
-
-Chemical plants
-
-Logistics centers
-
-Smart factory environments
-
-Edge-based on-site monitoring nodes
-
-Potential automation scenarios:
-
-Automatic machine shutdown upon CRITICAL event
-
-Audible alarms via ESP32 relay
-
-On-site warning signal systems
-
-Cloud event push to mobile dashboard
-
-Safety compliance analytics reporting
+The architecture is intentionally built to evolve into a full-stack industrial monitoring platform.
 
 🖥️ Technical Stack
 
-Python 3.10
+• Python 3.10
+• Ultralytics YOLO 8.x
+• PyTorch (CUDA)
+• OpenCV
+• Custom IoU Tracker
+• Structured CSV logging
 
-Ultralytics YOLO 8.x
+Planned extensions:
 
-PyTorch (CUDA)
+• Raspberry Pi deployment
+• ESP32 alarm system
+• Web dashboard (JS/HTML/CSS)
+• Distributed monitoring nodes
 
-OpenCV
+💼 Professional Positioning
 
-Custom IoU Tracker
+This project demonstrates:
 
-CSV structured logging
+• System-level thinking
+• Industrial scenario awareness
+• Applied AI beyond academic scope
+• Embedded-ready architecture
+• Real-time optimization capability
 
-Modular core logic
+It reflects readiness for:
 
-Windows development environment
-
-Planned Extensions:
-
-Raspberry Pi deployment
-
-ESP32 alarm integration
-
-Web dashboard (JS/HTML/CSS)
-
-Async event broadcasting
-
-🚀 Engineering Direction
-
-This project is evolving toward:
-
-Edge AI deployment
-
-Multi-camera architecture
-
-Distributed monitoring nodes
-
-Web-based safety management panel
-
-Mobile notification system
-
-Statistical compliance tracking
-
-💼 Professional Value
-
-This project reflects:
-
-System-level problem solving
-
-Industrial scenario awareness
-
-AI applied beyond academic context
-
-Embedded system readiness
-
-Automation-focused design
-
-Structured and maintainable code architecture
-
-It demonstrates readiness for:
-
-AI Engineering roles
-
-Computer Vision internships
-
-Embedded AI systems
-
-Industrial automation projects
-
-Full-stack safety monitoring systems
+• AI Engineering internships
+• Computer Vision roles
+• Embedded AI systems
+• Industrial automation projects
+• Full-stack monitoring solutions
 
 👨‍💻 Author
 
 Burak Kaygusuzoğlu
 Computer Engineering Student
-AI • Real-Time Systems • Automation • Web Development
